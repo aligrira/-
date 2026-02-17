@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السوق التونسي - منصة عرض المنتجات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-store"></i>
+                    <h1>السوق التونسي</h1>
+                </div>
+                <p>منصة تونسية لعرض المنتجات والتواصل بين البائعين والمشترين</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- شريط التصنيفات -->
+        <section class="categories-section">
+            <h2><i class="fas fa-th-large"></i> التصنيفات الرئيسية</h2>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- التصنيفات ستظهر هنا ديناميكياً -->
+            </div>
+        </section>
+
+        <!-- نموذج إضافة منتج جديد -->
+        <section class="add-product-section" id="addProductSection">
+            <h2><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h2>
+            <form id="productForm" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName">إسم المنتج:</label>
+                        <input type="text" id="productName" name="productName" placeholder="مثال: تلفاز سامسونج" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productCategory">التصنيف:</label>
+                        <select id="productCategory" name="productCategory" required>
+                            <option value="">إختار التصنيف</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">وصف المنتج:</label>
+                    <textarea id="productDescription" name="productDescription" rows="3" placeholder="أكتب وصفاً مفصلاً للمنتج..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">السعر:</label>
+                        <input type="number" id="productPrice" name="productPrice" step="0.001" min="0" placeholder="مثال: 50.000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productCurrency">العملة:</label>
+                        <select id="productCurrency" name="productCurrency">
+                            <option value="د.ت">دينار تونسي (د.ت)</option>
+                            <option value="$">دولار ($)</option>
+                            <option value="€">يورو (€)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productCondition">الحالة:</label>
+                        <select id="productCondition" name="productCondition">
+                            <option value="جديد">جديد</option>
+                            <option value="مستعمل - ممتاز">مستعمل - ممتاز</option>
+                            <option value="مستعمل - جيد">مستعمل - جيد</option>
+                            <option value="مستعمل - مقبول">مستعمل - مقبول</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productLocation">الولاية:</label>
+                        <select id="productLocation" name="productLocation" required>
+                            <option value="">إختار الولاية</option>
+                            <option value="تونس">تونس</option>
+                            <option value="صفاقس">صفاقس</option>
+                            <option value="سوسة">سوسة</option>
+                            <option value="القيروان">القيروان</option>
+                            <option value="بنزرت">بنزرت</option>
+                            <option value="نابل">نابل</option>
+                            <option value="قابس">قابس</option>
+                            <option value="مدنين">مدنين</option>
+                            <option value="قفصة">قفصة</option>
+                            <option value="المنستير">المنستير</option>
+                            <option value="أريانة">أريانة</option>
+                            <option value="بن عروس">بن عروس</option>
+                            <option value="منوبة">منوبة</option>
+                            <option value="المهدية">المهدية</option>
+                            <option value="سليانة">سليانة</option>
+                            <option value="باجة">باجة</option>
+                            <option value="جندوبة">جندوبة</option>
+                            <option value="الكاف">الكاف</option>
+                            <option value="تطاوين">تطاوين</option>
+                            <option value="قبلي">قبلي</option>
+                            <option value="توزر">توزر</option>
+                            <option value="زغوان">زغوان</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productImages">صور المنتج (يمكن إختيار عدة صور):</label>
+                    <input type="file" id="productImages" name="productImages" accept="image/*" multiple required>
+                    <div id="imagePreviewContainer" class="image-preview-container"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sellerName">إسم البائع:</label>
+                        <input type="text" id="sellerName" name="sellerName" placeholder="مثال: محمد التونسي" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sellerPhone">رقم الهاتف:</label>
+                        <input type="tel" id="sellerPhone" name="sellerPhone" placeholder="مثال: 20123456" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-cloud-upload-alt"></i> نشر المنتج
+                </button>
+            </form>
+        </section>
+
+        <!-- أزرار التحكم -->
+        <div class="control-buttons">
+            <button class="btn-toggle-form" id="toggleFormBtn">
+                <i class="fas fa-plus"></i> إضافة منتج جديد
+            </button>
+        </div>
+
+        <!-- قسم المنتجات -->
+        <section class="products-section">
+            <div class="products-header">
+                <h2><i class="fas fa-tags"></i> <span id="currentCategoryTitle">جميع المنتجات</span></h2>
+                <span class="products-count" id="productsCount">0 منتج</span>
+            </div>
+
+            <div class="filters">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="بحث عن منتج..." class="search-input">
+                </div>
+                
+                <select id="sortSelect" class="sort-select">
+                    <option value="default">ترتيب حسب</option>
+                    <option value="priceAsc">السعر: من الأقل للأعلى</option>
+                    <option value="priceDesc">السعر: من الأعلى للأقل</option>
+                    <option value="newest">الأحدث أولاً</option>
+                </select>
+            </div>
+
+            <div id="productsContainer" class="products-grid">
+                <!-- المنتجات ستظهر هنا ديناميكياً -->
+            </div>
+        </section>
+    </main>
+
+    <!-- نافذة منبثقة لعرض تفاصيل المنتج مع التعليقات -->
+    <div id="productModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <div id="modalContent" class="modal-product-details">
+                <!-- محتوى المنتج سيظهر هنا -->
+            </div>
+            
+            <!-- قسم التعليقات -->
+            <div class="comments-section">
+                <h3><i class="fas fa-comments"></i> التعليقات والإستفسارات</h3>
+                
+                <!-- نموذج إضافة تعليق -->
+                <div class="add-comment">
+                    <div class="comment-form">
+                        <div class="form-row">
+                            <input type="text" id="commenterName" placeholder="إسمك" class="comment-input">
+                            <input type="text" id="commenterPhone" placeholder="رقم الهاتف (إختياري)" class="comment-input">
+                        </div>
+                        <textarea id="commentText" placeholder="أكتب تعليقك أو إستفسارك..." rows="2"></textarea>
+                        <button class="btn-submit-comment" onclick="addComment()">
+                            <i class="fas fa-paper-plane"></i> إرسال
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- قائمة التعليقات -->
+                <div id="commentsContainer" class="comments-list">
+                    <!-- التعليقات ستظهر هنا -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- رسالة تأكيد الحذف -->
+    <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content small">
+            <h3><i class="fas fa-exclamation-triangle"></i> تأكيد الحذف</h3>
+            <p>هل أنت متأكد من حذف هذا المنتج؟</p>
+            <div class="modal-actions">
+                <button class="btn-danger" id="confirmDeleteBtn">نعم، إحذف</button>
+                <button class="btn-secondary" id="cancelDeleteBtn">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
